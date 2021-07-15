@@ -1,60 +1,37 @@
-// Be sure to name any p5.js functions we use in the global so Glitch can recognize them.
-// Add to this list as you consult the p5.js documentation for other functions. 
-/* global createCanvas, colorMode, HSB, width, height, random, background, fill, color, random,
-          rect, ellipse, stroke, image, loadImage, collideCircleCircle, collideRectCircle, text, 
-          mouseX, mouseY, strokeWeight, line, mouseIsPressed, windowWidth, windowHeight, noStroke, 
-          keyCode, UP_ARROW, LEFT_ARROW, RIGHT_ARROW, DOWN_ARROW, textSize tint*/
+/* globals createCanvas background noFill strokeWeight stroke ellipse rect fill*/
 
-// Var declarations
-let tintIter, tintVal, dvdImage, x, xVelocity, imageWidth, canvasWidth, y, yVelocity, imageLength, canvasLength;
+// Content behind double slashes is a comment. Use it for plain English notes,
+// or for code that you want to temporarily disable.
 
-
-
-function setup(){
-  canvasWidth = 600;
-  canvasLength = 600;
-  createCanvas(canvasWidth, canvasLength);
-  // We only want to load the logo once.
-  dvdImage = loadImage("https://cdn.glitch.com/eaea72a4-ac6d-4777-b76e-f37d75959aa5%2Fdvd.jpeg?1515761833387");
-  //Var assignments
-  x = 50;
-  xVelocity = 2;
-  imageWidth = 200
-  y = 50;
-  yVelocity = 2;
-  imageLength = 150
-  tintVal = 100;
-  tintIter = 50;
+function setup() {
+  // Code here runs only once
+  createCanvas(800, 600);
 }
 
-function draw(){
-  background(220);
-  //Move image
-  x += xVelocity;
-  y += yVelocity;
-  
-  //Bounce off horizontally
-  if ((x > canvasWidth - imageWidth) || (x < 0)){
-    xVelocity *= (-1);
-    if ((tintVal >= 255 - tintIter)||(tintVal <= tintIter)){
-      tintIter *= -1;
-    }
-    tintVal += tintIter;
-  }
+function drawRings() {
+  // Code here runs continuously
+  noFill();
+  background(255);
+  strokeWeight(2);
+  //Ring 1: Blue
+  stroke(0, 133, 199);
+  ellipse(100, 100, 50);
 
-  //Bounce off vertically
-  if ((y > canvasLength - imageLength) || (y < 0)) {
-    yVelocity *= -1;
-    if((tintVal >= 255 - tintIter)||(tintVal <= tintIter)){
-      tintIter *= -1;
-    }
-    tintVal += tintIter;
-  }
-  
-  // Draw the logo at the new position.
-  
-  image(dvdImage, x, y, imageWidth, imageLength);
-  tint(tintVal, tintVal, tintVal);
-  
+  //Ring 2: Yellow
+  stroke(244, 195, 0);
+  ellipse(130, 130, 50);
+
+  //Ring 3: Black
+  stroke(0, 0, 0);
+  ellipse(160, 100, 50);
+
+  //Ring 4: Green
+  stroke(0, 159, 61);
+  ellipse(190, 130, 50);
+
+  //Ring 5: Red
+  stroke(223, 0, 36);
+  ellipse(220, 100, 50);
+
   
 }
